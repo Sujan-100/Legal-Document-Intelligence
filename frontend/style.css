@@ -30,7 +30,7 @@ body {
     overflow-x: hidden; 
 }
 
-/* ======== Sidebar ======== */
+/* ======== Sidebar (Desktop View) ======== */
 .sidebar {
     width: 250px; 
     background: var(--card-bg);
@@ -82,7 +82,7 @@ body {
     box-shadow: 0 0 18px rgba(163,230,53,0.08);
 }
 
-/* ======== Main Content ======== */
+/* ======== Main Content (Desktop View) ======== */
 .main-content {
     margin-left: 250px;
     flex-grow: 1;
@@ -165,6 +165,7 @@ button {
     font-weight: 700;
     transition: 0.25s;
     box-shadow: 0 8px 30px rgba(18, 52, 12, 0.18);
+    display: inline-block; /* Ensure buttons behave well in mobile */
 }
 
 button:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(18, 52, 12, 0.22); }
@@ -217,8 +218,115 @@ pre {
 .status-text[style*="red"] { color: #FF6B6B !important; }
 .status-text[style*="green"] { color: var(--accent-strong) !important; }
 
-/* Responsive tweaks (keeps structure intact) */
+/* ======================================================= */
+/* ====== Mobile Responsiveness (Max-width 900px) ======== */
+/* ======================================================= */
 @media (max-width: 900px) {
-    .sidebar { position: relative; width: 100%; height: auto; box-shadow: none; }
-    .main-content { margin-left: 0; width: 100%; padding: 20px; }
+    
+    /* 1. Body & Layout */
+    body {
+        /* Force vertical layout for mobile */
+        flex-direction: column;
+    }
+
+    /* 2. Sidebar - Convert to top navigation bar */
+    .sidebar { 
+        position: relative; /* Not fixed anymore */
+        width: 100%; 
+        height: auto; 
+        padding: 15px 10px; /* Reduced padding */
+        box-shadow: 0 4px 15px var(--shadow); 
+    }
+
+    .sidebar h2 {
+        /* Hide or shrink the main title */
+        font-size: 1.2em;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+        text-align: center;
+    }
+    
+    .sidebar nav {
+        margin-top: 10px;
+    }
+
+    .sidebar ul {
+        display: flex; /* Arrange links horizontally */
+        justify-content: space-around;
+        gap: 5px;
+    }
+    
+    .sidebar li {
+        margin: 0;
+        flex-grow: 1; /* Distribute space evenly */
+        text-align: center;
+    }
+    
+    .sidebar a {
+        padding: 8px 5px; /* Smaller padding for links */
+        font-size: 14px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    /* 3. Main Content - Remove Desktop Margin */
+    .main-content { 
+        margin-left: 0; 
+        width: 100%; /* Full width */
+        padding: 20px 15px; /* Reduced padding */
+    }
+
+    /* 4. Header - Adjust for smaller screens */
+    header h1 {
+        font-size: 2em; /* Smaller main title */
+    }
+
+    header p {
+        font-size: 0.9em;
+        letter-spacing: 0.5px;
+    }
+
+    /* 5. Cards & Inputs - Smaller padding/font size */
+    .card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .card h2 {
+        font-size: 1.5em; 
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure buttons stack or take full width if needed */
+    button {
+        width: 100%;
+        margin-top: 10px;
+        margin-left: 0 !important; /* Override inline styles */
+        box-sizing: border-box;
+    }
+    
+    /* Button group tweaks */
+    #summarizeSection button {
+        margin-top: 10px;
+        display: block;
+    }
+    
+    /* Chatbox layout change */
+    .chat-box {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .chat-box button {
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* Table font size for readability */
+    #comparisonTable th, #comparisonTable td {
+        font-size: 0.85em;
+        padding: 8px;
+    }
+
 }
