@@ -1,5 +1,4 @@
 __pycache__
 .venv
 .env
-gemini_helper.py
 requirements.txt
